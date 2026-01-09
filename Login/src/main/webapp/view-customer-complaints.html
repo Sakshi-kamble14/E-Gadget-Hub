@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Complaints - Admin</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #f4f4f4;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2563eb;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: #fff;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #2563eb;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+        .back-btn:hover {
+            background: #1e40af;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Customer Complaints Report</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Complaint ID</th>
+                <th>Customer Email</th>
+                <th>Subject</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Submitted At</th>
+            </tr>
+        </thead>
+
+        <tbody id="complaints-table-body">
+            <tr><td colspan="6">Loading complaints...</td></tr>
+        </tbody>
+    </table>
+
+    <div style="text-align: center;">
+        <a href="admin.html" class="back-btn">Back to Dashboard</a>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            fetch("AdminComplaintReportServlet")
+                .then(response => response.text())
+                .then(html => {
+                    document.getElementById("complaints-table-body").innerHTML = html;
+                })
+                .catch(err => {
+                    document.getElementById("complaints-table-body").innerHTML =
+                        `<tr><td colspan='6' style="color:red;">Error loading complaints: ${err}</td></tr>`;
+                });
+        });
+    </script>
+
+</body>
+</html>

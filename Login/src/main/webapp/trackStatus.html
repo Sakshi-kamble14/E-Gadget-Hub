@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Track E-Waste Status</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { margin:0; font-family:'Roboto'; background: linear-gradient(135deg,#89f7fe,#66a6ff); display:flex; justify-content:center; align-items:center; height:100vh;}
+        .card { background:#fff; padding:40px 30px; border-radius:15px; box-shadow:0 8px 25px rgba(0,0,0,0.2); width:400px; text-align:center; transition: transform 0.3s;}
+        .card:hover { transform: translateY(-5px);}
+        h2 { margin-bottom:25px; color:#333;}
+        input[type=text] { width:100%; padding:12px 15px; margin:10px 0 20px 0; border:1px solid #ccc; border-radius:8px; outline:none; transition:border 0.3s;}
+        input[type=text]:focus { border:2px solid #66a6ff;}
+        input[type=submit] { width:100%; padding:12px; border:none; border-radius:8px; background:#66a6ff; color:#fff; font-size:16px; cursor:pointer; transition:background 0.3s, transform 0.2s;}
+        input[type=submit]:hover { background:#89f7fe; transform: scale(1.05);}
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Track Your E-Waste Status</h2>
+        <form action="TrackStatusServlet" method="post">
+            <input type="text" name="inventoryID" placeholder="Enter Inventory ID" required>
+            <input type="submit" value="Track Status">
+        </form>
+    </div>
+</body>
+</html>

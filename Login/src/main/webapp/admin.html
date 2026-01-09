@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Waste Management - Admin Portal</title>
+    <link rel="stylesheet" href="admin-style.css">
+    
+</head>
+<body>
+
+    <header>
+        <h1>Admin Portal - E-Waste Management</h1>
+        <nav>
+            <ul class="admin-nav">
+                <li><a href="#" id="admin-nav-dashboard">Dashboard</a></li>
+                <li><a href="#" id="admin-nav-collection-points">Collection Points</a></li>
+                <li><a href="view-customer-complaints.html" id="admin-nav-complaints">View Complaints</a></li>
+                <li><a href="report.html" id="admin-nav-reports">View Reports</a></li>
+                <li><a href="LogoutServlet" id="admin-nav-logout">Logout</a></li>
+                <li>
+                    <p class="register-link">
+                        <a href="register1.html">Add New Collector</a>
+                    </p>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- Dashboard Section -->
+        <section id="admin-dashboard-section" class="active-section">
+            <h2>Dashboard</h2>
+            <p>Welcome, Admin! Here's a quick overview of system activities.</p>
+
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <h3>Total Users</h3>
+                    <p id="stat-total-users">Loading...</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Pending Approvals</h3>
+                    <p id="stat-pending-approvals">Loading...</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Active Collections</h3>
+                    <p id="stat-active-collections">Loading...</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Distributors</h3>
+                    <p id="stat-total-distributors">Loading...</p>
+                </div>
+            </div>
+
+            <h3>Recent Activity</h3>
+            <ul id="recent-activity-list">
+                <li>Loading recent activities...</li>
+            </ul>
+        </section>
+
+        <!-- User Management Section -->
+        <section id="admin-users-section" style="display:none;">
+            <h2>User Management & Approvals</h2>
+            <div id="user-list">
+                <p>Loading users...</p>
+            </div>
+        </section>
+
+        <!-- Collection Points Section -->
+        <section id="admin-collection-points-section" style="display:none;">
+            <h2>Collection Points</h2>
+            <button id="add-collection-point-btn">Add New Collection Point</button>
+
+            <form id="add-collection-point-form" style="display:none; margin-top: 20px;">
+                <h3>Add New Point</h3>
+
+                <label for="point-name">Name:</label>
+                <input type="text" id="point-name" required>
+
+                <label for="point-address">Address:</label>
+                <textarea id="point-address" rows="3" required></textarea>
+
+                <label for="point-contact">Contact Person/Number:</label>
+                <input type="text" id="point-contact" required>
+
+                <button type="submit">Save Collection Point</button>
+                <button type="button" id="cancel-add-point">Cancel</button>
+            </form>
+
+            <div id="collection-point-list" style="margin-top: 20px;">
+                <p>Loading collection points...</p>
+            </div>
+        </section>
+
+        <!-- Distributor Assignment Section -->
+        <section id="admin-distributors-section" style="display:none;">
+            <h2>Distributor Assignment</h2>
+
+            <div id="assignment-requests">
+                <h3>Pending E-Waste Pickups</h3>
+                <p>Loading pickup requests...</p>
+            </div>
+
+            <div id="distributor-list-for-assignment">
+                <h3>Available Distributors</h3>
+                <p>Loading distributors...</p>
+            </div>
+        </section>
+
+        <!-- Compliance Section -->
+        <section id="admin-compliance-section" style="display:none;">
+            <h2>Compliance with Environmental Laws</h2>
+
+            <p>This section displays information, alerts, and tools related to environmental regulations and compliance.</p>
+
+            <textarea rows="10" cols="80" placeholder="Enter notes or updates regarding compliance here."></textarea>
+            <button>Save Compliance Notes</button>
+
+            <h3>Recent Compliance Audits</h3>
+            <ul id="compliance-audits-list">
+                <li><a href="#">Audit Report 2024-Q4 - Initial Assessment</a></li>
+                <li><a href="#">Legislation Update - June 2025 (Maharashtra E-Waste Rules)</a></li>
+            </ul>
+        </section>
+
+        <!-- Reports Section -->
+        <section id="admin-reports-section" style="display:none;">
+            <h2>Generate Reports & Analytics</h2>
+
+            <div class="report-options">
+                <label for="report-type">Select Report Type:</label>
+                <select id="report-type">
+                    <option value="summary">Overall Summary</option>
+                    <option value="disposal-trends">Disposal Trends</option>
+                    <option value="recycling-efficiency">Recycling Efficiency</option>
+                    <option value="user-activity">User Activity</option>
+                </select>
+
+                <button id="generate-report-btn">Generate Report</button>
+            </div>
+
+            <div id="report-display-area"
+                style="margin-top: 20px; border: 1px solid #ccc; padding: 15px; min-height: 200px;">
+                <p>Select a report type and click "Generate Report".</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 E-Waste Management System - Admin</p>
+    </footer>
+
+    <script src="admin-script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login - e-Gadget Hub</title>
+  <style>
+    :root {
+      --color-bg-light: #ffffff;
+      --color-bg-dark: #111827;
+      --color-text-light: #111827;
+      --color-text-dark: #d1d5db;
+      --color-gray-500: #6b7280;
+      --color-gray-300: #d1d5db;
+      --color-primary: #111827;
+      --color-primary-contrast: #ffffff;
+      --radius-rounded: 0.75rem;
+      --shadow-light: 0 3px 6px rgba(0,0,0,0.1);
+      --shadow-medium: 0 8px 20px rgba(0,0,0,0.12);
+      --transition-fast: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --max-container-width: 1200px;
+    }
+
+    /* Reset and base */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      background-color: var(--color-bg-light);
+      color: var(--color-text-light);
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      transition: background-color var(--transition-fast), color var(--transition-fast);
+    }
+    body.dark {
+      background-color: var(--color-bg-dark);
+      color: var(--color-text-dark);
+    }
+
+    /* Container */
+    .container {
+      max-width: var(--max-container-width);
+      width: 100%;
+      padding: 0 2rem 3rem;
+      margin: 0 auto;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 4rem;
+    }
+
+    /* Sticky header navigation */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 99;
+      background: var(--color-bg-light);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+      transition: background-color var(--transition-fast), box-shadow var(--transition-fast);
+    }
+    body.dark header {
+      background: var(--color-bg-dark);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    }
+    nav {
+      max-width: var(--max-container-width);
+      margin: 0 auto;
+      padding: 1.2rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 700;
+      font-size: 1.125rem;
+      user-select: none;
+      color: var(--color-text-light);
+    }
+    body.dark nav {
+      color: var(--color-text-dark);
+    }
+    nav .logo {
+      font-weight: 900;
+      font-size: 1.5rem;
+      letter-spacing: -0.025em;
+      cursor: default;
+    }
+    nav ul {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    nav ul li a {
+      color: var(--color-gray-500);
+      text-decoration: none;
+      font-weight: 600;
+      cursor: pointer;
+      transition: color var(--transition-fast);
+      outline-offset: 2px;
+    }
+    nav ul li a:hover,
+    nav ul li a:focus {
+      color: var(--color-primary);
+      outline: 2px solid var(--color-primary);
+      border-radius: 0.375rem;
+      outline-offset: 4px;
+      outline-style: solid;
+    }
+
+    /* Theme toggle button */
+    #themeToggleBtn {
+      background: none;
+      border: none;
+      color: var(--color-gray-500);
+      font-size: 1.25rem;
+      cursor: pointer;
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.375rem;
+      transition: color var(--transition-fast), background-color var(--transition-fast);
+      user-select: none;
+    }
+    #themeToggleBtn:hover,
+    #themeToggleBtn:focus {
+      color: var(--color-primary);
+      outline: none;
+      background-color: rgba(37,99,235,0.1);
+    }
+
+    /* Hero Section */
+    .hero {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+      user-select: none;
+    }
+    .hero h1 {
+      font-weight: 800;
+      font-size: 48px;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      color: var(--color-text-light);
+      transition: color var(--transition-fast);
+    }
+    body.dark .hero h1 {
+      color: var(--color-text-dark);
+    }
+    .hero p {
+      font-weight: 600;
+      color: var(--color-gray-500);
+      font-size: 18px;
+      max-width: 420px;
+      margin-left: auto;
+      margin-right: auto;
+      transition: color var(--transition-fast);
+    }
+    body.dark .hero p {
+      color: #94a3b8;
+    }
+
+    /* Login Card */
+    .login-card {
+      background: var(--color-bg-light);
+      width: 100%;
+      max-width: 420px;
+      margin: 0 auto;
+      padding: 2.5rem 3rem;
+      border-radius: var(--radius-rounded);
+      box-shadow: var(--shadow-medium);
+      transition: background-color var(--transition-fast), box-shadow var(--transition-fast);
+    }
+    body.dark .login-card {
+      background: #1f2937;
+      box-shadow: 0 0 20px rgba(0 0 0 / 0.4);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+    }
+    label {
+      font-weight: 700;
+      font-size: 1.125rem;
+      color: var(--color-text-light);
+      transition: color var(--transition-fast);
+      user-select: none;
+    }
+    body.dark label {
+      color: var(--color-text-dark);
+    }
+    select, input[type="text"], input[type="password"] {
+      padding: 0.85rem 1rem;
+      font-size: 1rem;
+      border: 1.5px solid var(--color-gray-300);
+      border-radius: var(--radius-rounded);
+      background: var(--color-bg-light);
+      color: var(--color-text-light);
+      transition: border-color var(--transition-fast), background-color var(--transition-fast), color var(--transition-fast);
+      outline-offset: 3px;
+    }
+    body.dark select, body.dark input {
+      background: #374151;
+      border-color: #4b5563;
+      color: var(--color-text-dark);
+    }
+    select:focus, input:focus {
+      border-color: var(--color-primary);
+      outline: none;
+      box-shadow: 0 0 8px 3px rgba(37, 99, 235, 0.3);
+      background: var(--color-bg-light);
+      color: var(--color-text-light);
+      transition: box-shadow var(--transition-fast);
+    }
+    body.dark select:focus, body.dark input:focus {
+      background: #1f2937;
+      color: var(--color-text-dark);
+    }
+
+    button[type="submit"] {
+      cursor: pointer;
+      background-color: var(--color-primary);
+      color: var(--color-primary-contrast);
+      font-weight: 700;
+      font-size: 1.25rem;
+      padding: 1rem;
+      border: none;
+      border-radius: var(--radius-rounded);
+      box-shadow: var(--shadow-medium);
+      transition: background-color var(--transition-fast), transform var(--transition-fast);
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    button[type="submit"]:hover,
+    button[type="submit"]:focus {
+      background-color: #3f51b5;
+      outline: none;
+      transform: scale(1.04);
+    }
+
+    /* Register Link */
+    .register-link {
+      margin-top: 1.5rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--color-gray-500);
+      text-align: center;
+      transition: color var(--transition-fast);
+      user-select: none;
+    }
+    body.dark .register-link {
+      color: #94a3b8;
+    }
+    .register-link a {
+      color: var(--color-primary);
+      text-decoration: none;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .register-link a:hover,
+    .register-link a:focus {
+      text-decoration: underline;
+      outline-offset: 2px;
+      outline: 2px solid var(--color-primary);
+      border-radius: 0.375rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 36px;
+      }
+      .login-card {
+        padding: 2rem;
+        margin: 0 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header role="banner" aria-label="Primary navigation">
+    <nav>
+      <div class="container" style="display:flex; justify-content: space-between; align-items:center;">
+        <div class="logo" tabindex="0" aria-label="e-Gadget Hub logo">e-Gadget Hub</div>
+        <ul role="menubar" style="display:flex; gap:1.5rem; list-style:none; padding:0; margin:0;">
+          <li role="none"><a role="menuitem" href="#" tabindex="0">Home</a></li>
+          <li role="none"><a role="menuitem" href="#" tabindex="0">Features</a></li>
+          <li role="none"><a role="menuitem" href="#" tabindex="0">Help</a></li>
+          <li role="none"><button id="themeToggleBtn" aria-label="Toggle Dark Mode" aria-pressed="false" style="background:none; border:none; font-size:1.5rem; cursor:pointer; padding:0;">🌙</button></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container" role="main" aria-labelledby="loginHeading">
+    <section class="hero" aria-label="Page introduction">
+      <h1 id="loginHeading">Welcome Back to e-Gadget Hub</h1>
+      <p>Your gateway to effortless gadget collection management.</p>
+    </section>
+
+    <section class="login-card" aria-label="Login form section">
+      <form id="loginForm" action="LoginServlet" method="post">
+        <label for="userType">Login As</label>
+        <select id="userType" name="userType" required>
+          <option value="" disabled selected>Select user type</option>
+          <option value="customer">Customer</option>
+          <option value="admin">Admin</option>
+          <option value="collector">Collector</option>
+        </select>
+
+        <label for="username">Email</label>
+        <input type="text" id="username" name="username" placeholder="Enter your email" required>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+        <button type="submit">Login</button>
+    </form>
+    <div id="errorMessage" class="error"></div>
+</div>
+
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const error = urlParams.get('error');
+    const errorMessageDiv = document.getElementById('errorMessage');
+    if(error) {
+        if(error === 'empty') errorMessageDiv.textContent = "Please fill all fields!";
+        else if(error === 'invalid') errorMessageDiv.textContent = "Invalid credentials!";
+        else if(error === 'invalidtype') errorMessageDiv.textContent = "Invalid user type!";
+    }
+</script>
+
+
+      <p class="register-link">
+        Don't have an account? <a href="register.html">Register here</a>
+      </p>
+    </section>
+  </main>
+
+  <script>
+    // Theme toggle
+    const btn = document.getElementById('themeToggleBtn');
+    const bodyEl = document.body;
+
+    function setDarkMode(enabled) {
+      if (enabled) {
+        bodyEl.classList.add('dark');
+        btn.textContent = '☀️';
+        btn.setAttribute('aria-pressed', 'true');
+        localStorage.setItem('eGadgetHubTheme', 'dark');
+      } else {
+        bodyEl.classList.remove('dark');
+        btn.textContent = '🌙';
+        btn.setAttribute('aria-pressed', 'false');
+        localStorage.setItem('eGadgetHubTheme', 'light');
+      }
+    }
+
+    // Initialize theme from localStorage
+    const savedTheme = localStorage.getItem('eGadgetHubTheme');
+    if (savedTheme === 'dark') {
+      setDarkMode(true);
+    } else {
+      setDarkMode(false);
+    }
+
+    btn.addEventListener('click', () => {
+      setDarkMode(!bodyEl.classList.contains('dark'));
+    });
+
+    
+  </script>
+</body>
+</html>

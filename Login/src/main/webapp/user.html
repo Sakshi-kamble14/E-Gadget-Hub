@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Waste Management - User Portal</title>
+    <link rel="stylesheet" href="user-style.css">
+
+    <script>
+        // Simple tab switching for sections
+        document.addEventListener("DOMContentLoaded", () => {
+            const sections = {
+                dashboard: document.getElementById("user-dashboard-section"),
+                submit: document.getElementById("user-submit-ewaste-section"),
+                track: document.getElementById("user-track-status-section"),
+                reports: document.getElementById("user-reports-section")
+            };
+
+            function showSection(sec) {
+                for (let s in sections) sections[s].style.display = "none";
+                sections[sec].style.display = "block";
+            }
+
+            document.getElementById("user-nav-dashboard").addEventListener("click", () => showSection("dashboard"));
+            document.getElementById("user-nav-submit-ewaste").addEventListener("click", () => showSection("submit"));
+            document.getElementById("user-nav-track-status").addEventListener("click", () => showSection("track"));
+            document.getElementById("user-nav-reports").addEventListener("click", () => showSection("reports"));
+        });
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>User Portal</h1>
+        <nav>
+            <ul>
+                <li><a href="#" id="user-nav-dashboard">Dashboard</a></li>
+                <li><a href="submitEwaste.html" id="user-nav-submit-ewaste">Submit E-Waste</a></li>
+                <li><a href="#" id="user-nav-track-status">Track Status</a></li>
+                <li><a href="#" id="user-nav-reports">My Reports</a></li>
+                <li><a class="nav-link scrollto" href="complaint.html"><span class="fa fa-trash"> Complain</span></a></li>
+          <li><a class="nav-link scrollto"  href=""><span class="fa fa-edit"> Preview Complain </span></a></li>
+                <li><a href="LogoutServlet" id="user-nav-logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Dashboard Section -->
+        <section id="user-dashboard-section">
+            <h2>Welcome to Your Dashboard!</h2>
+            <p>Quick overview of your e-waste activities.</p>
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <h3>Submitted Requests</h3>
+                    <p id="stat-submitted-requests">Loading...</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Completed Disposals</h3>
+                    <p id="stat-completed-disposals">Loading...</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Items in Progress</h3>
+                    <p id="stat-in-progress">Loading...</p>
+                </div>
+            </div>
+            <h3>Recent Activity</h3>
+            <ul id="recent-activity-list">
+                <li>Loading recent activity...</li>
+            </ul>
+        </section>
+
+        <!-- Submit E-Waste Section -->
+        <section id="user-submit-ewaste-section" style="display:none;">
+            <h2>Submit New E-Waste for Disposal</h2>
+            <form id="ewaste-submission-form" method="post" action="EwasteSubmissionServlet">
+                <label for="item-type">Item Type:</label>
+                <input type="text" id="item-type" name="ewasteType" placeholder="e.g., Laptop, Mobile Phone, Refrigerator" required>
+
+                <label for="quantity">Quantity:</label>
+                <input type="number" id="quantity" name="quantity" min="1" value="1" required>
+
+                <label for="pickup-address">Pickup Address:</label>
+                <textarea id="pickup-address" name="pickupAddress" rows="3" placeholder="Your full address for pickup" required></textarea>
+
+                <label for="preferred-date">Preferred Pickup Date:</label>
+                <input type="date" id="preferred-date" name="pickupDate" required>
+
+                <label for="contact-number">Contact Number:</label>
+                <input type="text" id="contact-number" name="contactNumber" placeholder="e.g., 9876543210" required>
+
+                <button type="submit">Submit Request</button>
+            </form>
+            <div id="submission-message" style="margin-top: 20px; color: green; font-weight: bold;">
+                <!-- Servlet will return success/failure message -->
+            </div>
+        </section>
+
+        <!-- Track Status Section -->
+        <section id="user-track-status-section" style="display:none;">
+            <h2>Track Your E-Waste Disposal Status</h2>
+            <div id="tracked-requests-list">
+                <p>Loading your requests...</p>
+            </div>
+        </section>
+
+        <!-- Reports Section -->
+        <section id="user-reports-section" style="display:none;">
+            <h2>My Disposal & Recycling Reports</h2>
+            <div class="report-options">
+                <label for="user-report-type">Select Report Type:</label>
+                <select id="user-report-type">
+                    <option value="disposal-history">Disposal History</option>
+                    <option value="environmental-impact">Environmental Impact</option>
+                </select>
+                <button id="user-generate-report-btn">Generate Report</button>
+            </div>
+            <div id="user-report-display-area" style="margin-top: 20px; border: 1px solid #ccc; padding: 15px; min-height: 200px;">
+                <p>Select a report type and click "Generate Report".</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 E-Waste Management System - User</p>
+    </footer>
+</body>
+</html>
