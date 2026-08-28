@@ -1,0 +1,567 @@
+{
+  "info": {
+    "name": "E-Waste Management System API",
+    "description": "React + Node.js + Express.js + MySQL API collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000"
+    },
+    {
+      "key": "customerId",
+      "value": "1"
+    },
+    {
+      "key": "collectorId",
+      "value": "1"
+    },
+    {
+      "key": "collectionPointId",
+      "value": "1"
+    },
+    {
+      "key": "requestId",
+      "value": "1"
+    },
+    {
+      "key": "inventoryId",
+      "value": "1"
+    }
+  ],
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Customer Register",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/customer/register"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customerName\": \"Sakshi Kamble\",\n  \"email\": \"sakshi@gmail.com\",\n  \"phoneNo\": \"9876543210\",\n  \"password\": \"Sakshi@123\",\n  \"address\": \"Kolhapur, Maharashtra\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Customer Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/customer/login"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"sakshi@gmail.com\",\n  \"password\": \"Sakshi@123\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Admin Register",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/admin/register"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"adminName\": \"Admin\",\n  \"email\": \"admin@ewaste.com\",\n  \"password\": \"Admin@123\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Admin Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/admin/login"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@ewaste.com\",\n  \"password\": \"Admin@123\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Collector Register",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/collector/register"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"collectorName\": \"Rahul Patil\",\n  \"email\": \"rahul@gmail.com\",\n  \"password\": \"Rahul@123\",\n  \"collectionPointId\": 1\n}"
+            }
+          }
+        },
+        {
+          "name": "Collector Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/collector/login"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"rahul@gmail.com\",\n  \"password\": \"Rahul@123\"\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Collection Points",
+      "item": [
+        {
+          "name": "Create Collection Point",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/collection-points"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"location\": \"DKTE College, Ichalkaranji\",\n  \"capacity\": 500,\n  \"adminId\": 1\n}"
+            }
+          }
+        },
+        {
+          "name": "Get Collection Points",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/collection-points"
+            }
+          }
+        },
+        {
+          "name": "Get Collection Point",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/collection-points/{{collectionPointId}}"
+            }
+          }
+        },
+        {
+          "name": "Update Collection Point",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/collection-points/{{collectionPointId}}"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"location\": \"DKTE College, Ichalkaranji\",\n  \"capacity\": 750\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete Collection Point",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/collection-points/{{collectionPointId}}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "E-Waste Requests",
+      "item": [
+        {
+          "name": "Create Request",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/requests"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customerId\": 1,\n  \"collectionPointId\": 1\n}"
+            }
+          }
+        },
+        {
+          "name": "Get All Requests",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/requests"
+            }
+          }
+        },
+        {
+          "name": "Get Request",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/requests/{{requestId}}"
+            }
+          }
+        },
+        {
+          "name": "Get Customer Requests",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/requests/customer/{{customerId}}"
+            }
+          }
+        },
+        {
+          "name": "Get Collector Requests",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/requests/collector/{{collectorId}}"
+            }
+          }
+        },
+        {
+          "name": "Assign Collector",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/requests/{{requestId}}/assign/{{collectorId}}"
+            }
+          }
+        },
+        {
+          "name": "Update Request Status",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/requests/{{requestId}}/status"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"COLLECTED\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete Request",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/requests/{{requestId}}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Inventory",
+      "item": [
+        {
+          "name": "Add Inventory",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/inventory"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ewasteType\": \"Mobile Phone\",\n  \"quantity\": 20,\n  \"status\": \"COLLECTED\",\n  \"collectorId\": 1,\n  \"collectionPointId\": 1\n}"
+            }
+          }
+        },
+        {
+          "name": "Get All Inventory",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/inventory"
+            }
+          }
+        },
+        {
+          "name": "Get Inventory",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/inventory/{{inventoryId}}"
+            }
+          }
+        },
+        {
+          "name": "Get Collector Inventory",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/inventory/collector/{{collectorId}}"
+            }
+          }
+        },
+        {
+          "name": "Update Inventory",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/inventory/{{inventoryId}}"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ewasteType\": \"Mobile Phone\",\n  \"quantity\": 25,\n  \"status\": \"RECYCLED\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete Inventory",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/inventory/{{inventoryId}}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Customers",
+      "item": [
+        {
+          "name": "Get Customers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/customers"
+            }
+          }
+        },
+        {
+          "name": "Get Customer",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/customers/{{customerId}}"
+            }
+          }
+        },
+        {
+          "name": "Update Customer",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/customers/{{customerId}}"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customerName\": \"Sakshi Kamble\",\n  \"phoneNo\": \"9876543210\",\n  \"address\": \"Kolhapur, Maharashtra\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete Customer",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/customers/{{customerId}}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Collectors",
+      "item": [
+        {
+          "name": "Get Collectors",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/collectors"
+            }
+          }
+        },
+        {
+          "name": "Get Collector",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/collectors/{{collectorId}}"
+            }
+          }
+        },
+        {
+          "name": "Assign Collection Point",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/collectors/{{collectorId}}/collection-point/{{collectionPointId}}"
+            }
+          }
+        },
+        {
+          "name": "Get Collector Requests",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/collectors/{{collectorId}}/requests"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin",
+      "item": [
+        {
+          "name": "Dashboard",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/admin/dashboard"
+            }
+          }
+        },
+        {
+          "name": "Get Admin Customers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/admin/customers"
+            }
+          }
+        },
+        {
+          "name": "Get Admin Collectors",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/admin/collectors"
+            }
+          }
+        },
+        {
+          "name": "Get Admin Requests",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/admin/requests"
+            }
+          }
+        },
+        {
+          "name": "Get Admin Inventory",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/admin/inventory"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
